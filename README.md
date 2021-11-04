@@ -18,7 +18,7 @@ https://york870198.github.io/repositoryList/
 
 - [github Rest API](https://docs.github.com/en/rest)
 
-  串接 API 已取得公開的 repositories。
+  串接 API 以取得公開的 repositories。
 
   由於沒有另外做後端伺服器、在純前端網頁上放 Auth token 並不安全，
 
