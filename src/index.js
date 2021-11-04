@@ -5,7 +5,7 @@ import styles from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 
 
-const wallPaperIds = ['ZjZBL8V1nMM','wqIq3b9Xclo','8dMvxXQKZag','fr2--0bD6JU','TPB-0YtXHlY']
+const wallPaperIds = ['ZjZBL8V1nMM','8dMvxXQKZag','fr2--0bD6JU','TPB-0YtXHlY']
 
 const ParallaxBackgroundDiv = styles.div`
   min-height: 100vh;
@@ -242,7 +242,7 @@ function App() {
         return res.json()
       } else {
         return [{
-          name:'Something when wrong.',
+          name:'Something went wrong.',
           html_url: 'https://github.com/york870198',
           description: 'Seems like github api rejected the request.'
         }]
