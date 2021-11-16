@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react'
-import ReactDOM from 'react-dom'
-import ReactMarkdown from 'react-markdown'
-import styles from 'styled-components'
-import { CSSTransition } from 'react-transition-group'
-
-
-const wallPaperIds = ['ZjZBL8V1nMM','8dMvxXQKZag','fr2--0bD6JU','TPB-0YtXHlY']
+/* eslint-disable max-len */
+/* eslint-disable camelcase */
+/* eslint-disable require-jsdoc */
+import React, {useState, useEffect, useRef} from 'react';
+import ReactDOM from 'react-dom';
+import ReactMarkdown from 'react-markdown';
+import styles from 'styled-components';
+import {CSSTransition} from 'react-transition-group';
 
 const ParallaxBackgroundDiv = styles.div`
   min-height: 100vh;
-  background: url(${props=>props.wallPaperIndex});
+  background: url(${(props)=>props.wallPaperIndex});
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -18,7 +18,7 @@ const ParallaxBackgroundDiv = styles.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-`
+`;
 
 const RepoDiv = styles.div`
   background: rgba(255,255,255, 0.7);
@@ -34,7 +34,7 @@ const RepoDiv = styles.div`
   @media(max-width: 900px) {
     flex-direction: column;
   }
-`
+`;
 
 const RepoInfoDiv = styles.div`
   width: 35%;
@@ -80,7 +80,7 @@ const RepoInfoDiv = styles.div`
     height: 20%;
     text-align: center;
   }
-`
+`;
 
 const RepoReadMeDiv = styles.div`
   width: 50%;
@@ -116,9 +116,9 @@ const RepoReadMeDiv = styles.div`
   @media(max-width: 900px) {
     width: 90%;
   }
-`
+`;
 
-const AppDiv = styles.div``
+const AppDiv = styles.div``;
 
 const BannerDiv = styles.div`
   min-width: 500px;
@@ -127,7 +127,7 @@ const BannerDiv = styles.div`
   text-align: center;
   border-radius: 20px;
   margin: auto auto;
-`
+`;
 
 const RepoNameH1 = styles.h1`
   width: 100%;
@@ -138,27 +138,29 @@ const RepoNameH1 = styles.h1`
   box-sizing: border-box;
   margin: 0;
   padding: 0.67em 0px;
-`
+`;
 
-function backgroundSetterClosure(){
-  const wallPaperUrls = 
-  ['https://images.unsplash.com/photo-1635341376583-51472269f13b?ixid=MnwyNzI5NDh8MHwxfGFsbHx8fHx8fHx8fDE2MzU5NTE0NjM&ixlib=rb-1.2.1',
-  'https://images.unsplash.com/photo-1634824419410-8594aa656661?ixid=MnwyNzI5NDh8MHwxfGFsbHx8fHx8fHx8fDE2MzU5NTU1NTQ&ixlib=rb-1.2.1',
-  'https://images.unsplash.com/photo-1577268173819-d36a3378f8d8?ixid=MnwyNzI5NDh8MHwxfGFsbHx8fHx8fHx8fDE2MzYwMTE2NzM&ixlib=rb-1.2.1',
-  'https://images.unsplash.com/photo-1634746027343-985ad425b8b5?ixid=MnwyNzI5NDh8MHwxfGFsbHx8fHx8fHx8fDE2MzYwMTE3NTI&ixlib=rb-1.2.1',]
-  let index = 0
+function backgroundSetterClosure() {
+  const wallPaperUrls =
+  [
+    'https://images.unsplash.com/photo-1635341376583-51472269f13b?ixid=MnwyNzI5NDh8MHwxfGFsbHx8fHx8fHx8fDE2MzU5NTE0NjM&ixlib=rb-1.2.1',
+    'https://images.unsplash.com/photo-1634824419410-8594aa656661?ixid=MnwyNzI5NDh8MHwxfGFsbHx8fHx8fHx8fDE2MzU5NTU1NTQ&ixlib=rb-1.2.1',
+    'https://images.unsplash.com/photo-1577268173819-d36a3378f8d8?ixid=MnwyNzI5NDh8MHwxfGFsbHx8fHx8fHx8fDE2MzYwMTE2NzM&ixlib=rb-1.2.1',
+    'https://images.unsplash.com/photo-1634746027343-985ad425b8b5?ixid=MnwyNzI5NDh8MHwxfGFsbHx8fHx8fHx8fDE2MzYwMTE3NTI&ixlib=rb-1.2.1',
+  ];
+  let index = 0;
   return function() {
-    let url = wallPaperUrls[index]
-    if(index<wallPaperUrls.length-1){
-      index++
-    } else{
-      index = 0
+    const url = wallPaperUrls[index];
+    if (index<wallPaperUrls.length-1) {
+      index++;
+    } else {
+      index = 0;
     }
-    return url
-  }
+    return url;
+  };
 }
 
-const backgroundSetter = backgroundSetterClosure()
+const backgroundSetter = backgroundSetterClosure();
 
 function BannerBlock() {
   return (
@@ -167,53 +169,57 @@ function BannerBlock() {
         <h1>GithubRepo of york870198</h1>
       </BannerDiv>
     </ParallaxBackgroundDiv>
-  )
+  );
 }
+RepoBlock.propTypes = {
+  repo: PropTypes.object.isRequired,
+};
 
-function RepoBlock({ repo }){
-  const repoInfoRef = useRef(null)
-  const { name, html_url, contents_url, description } = repo
-  const [readme, setReadme] = useState('')
-  const [inAnimation, SetInAnimation] = useState(false)
+function RepoBlock({repo}) {
+  const repoInfoRef = useRef(null);
+  const {html_url, contents_url, description} = repo;
+  const [readme, setReadme] = useState('');
+  const [inAnimation, setInAnimation] = useState(false);
 
-  function getReadMe(){
-    let contentApiUrl = contents_url.replace('{+path}','README.md')
+  function getReadMe() {
+    const contentApiUrl = contents_url.replace('{+path}', 'README.md');
     fetch(contentApiUrl, {
-      mode: 'cors'
+      mode: 'cors',
     })
-    .then(res => res.json())
-    .then(jsonData => {
-      if(jsonData.content){
-        return jsonData.content
-      } else {
-        return ''
-      }
-    })
-    .then(readmeEncoded => contentDecoder(readmeEncoded))
-    .then(readmeStr => setReadme(readmeStr))
+        .then((res) => res.json())
+        .then((jsonData) => {
+          if (jsonData.content) {
+            return jsonData.content;
+          } else {
+            return '';
+          }
+        })
+        .then((readmeEncoded) => contentDecoder(readmeEncoded))
+        .then((readmeStr) => setReadme(readmeStr));
   }
 
-  function contentDecoder(str){
-    return decodeURIComponent(escape(window.atob(str)))
+  function contentDecoder(str) {
+    return decodeURIComponent(escape(window.atob(str)));
   }
 
   useEffect(()=>{
-    if(contents_url){
-      getReadMe()
+    if (contents_url) {
+      getReadMe();
     }
     window.addEventListener('scroll', (e)=>{
-      if(repoInfoRef.current.getBoundingClientRect().y < (window.innerHeight * 0.9)){
-        SetInAnimation(true)
+      if (repoInfoRef.current.getBoundingClientRect().y <
+      (window.innerHeight * 0.9)) {
+        setInAnimation(true);
       }
-    })
-  },[])
+    });
+  }, []);
 
   return (
     <RepoDiv ref={repoInfoRef}>
       <RepoInfoDiv>
         <CSSTransition in={inAnimation} timeout={300} classNames="fade">
           <div>
-            <a target="_blank" href={html_url}>{html_url}</a>
+            <a target="_blank" rel="noreferrer" href={html_url}>{html_url}</a>
           </div>
         </CSSTransition>
         <CSSTransition in={inAnimation} timeout={300} classNames="fade">
@@ -224,39 +230,39 @@ function RepoBlock({ repo }){
       </RepoInfoDiv>
       <CSSTransition in={inAnimation} timeout={300} classNames="fade">
         <RepoReadMeDiv>
-          {(readme)? <ReactMarkdown children={readme} /> : <p>This repository does not have a README.md file.</p>}
+          {(readme)?<ReactMarkdown>{readme}</ReactMarkdown>:<p>This repository does not have a README.md file.</p>}
         </RepoReadMeDiv>
       </CSSTransition>
     </RepoDiv>
-  )
+  );
 }
 
 function App() {
-  const [repoList, setRepoList] = useState([])
-  function getGithubApi(){
+  const [repoList, setRepoList] = useState([]);
+  function getGithubApi() {
     fetch('https://api.github.com/users/york870198/repos', {
-      mode: 'cors'
+      mode: 'cors',
     })
-    .then(res=>{
-      if(res.status === 200){
-        return res.json()
-      } else {
-        return [{
-          name:'Something went wrong.',
-          html_url: 'https://github.com/york870198',
-          description: 'Seems like github api rejected the request.'
-        }]
-      }
-    })
-    .then(jsonData=>{
-      setRepoList(jsonData)
-    })
+        .then((res)=>{
+          if (res.status === 200) {
+            return res.json();
+          } else {
+            return [{
+              name: 'Something went wrong.',
+              html_url: 'https://github.com/york870198',
+              description: 'Seems like github api rejected the request.',
+            }];
+          }
+        })
+        .then((jsonData)=>{
+          setRepoList(jsonData);
+        });
   }
 
   useEffect(()=>{
-    getGithubApi()
-  },[])
-  return(
+    getGithubApi();
+  }, []);
+  return (
     <AppDiv>
       <BannerBlock/>
       {(repoList.length > 0) && repoList.map((repo)=>{
@@ -266,10 +272,10 @@ function App() {
             <RepoBlock repo={repo} />
             <div/>
           </ParallaxBackgroundDiv>
-        </React.Fragment>)
+        </React.Fragment>);
       })}
     </AppDiv>
-  )
+  );
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('root'));
