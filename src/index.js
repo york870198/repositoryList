@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import ReactMarkdown from 'react-markdown';
 import styles from 'styled-components';
 import {CSSTransition} from 'react-transition-group';
+import PropTypes from 'prop-types';
 
 const ParallaxBackgroundDiv = styles.div`
   min-height: 100vh;

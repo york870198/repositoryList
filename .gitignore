@@ -19,4 +19,4 @@ wsTester.html
 yarn-error.log
 
 .babelrc
-.vs
+.vscode
